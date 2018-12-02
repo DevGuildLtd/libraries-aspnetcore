@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="../MSBuild/Nuget.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <Description>Contains definitions of entity-related permissions.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DevGuild.AspNetCore.Services.Permissions\DevGuild.AspNetCore.Services.Permissions.csproj" />
+  </ItemGroup>
+
+</Project>

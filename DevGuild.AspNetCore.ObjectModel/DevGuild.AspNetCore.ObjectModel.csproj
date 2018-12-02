@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="../MSBuild/Nuget.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <Description>Contains base object model and view model classes.</Description>
+  </PropertyGroup>
+
+</Project>
