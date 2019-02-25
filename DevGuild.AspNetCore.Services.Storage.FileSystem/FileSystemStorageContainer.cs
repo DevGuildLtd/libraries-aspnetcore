@@ -52,7 +52,7 @@ namespace DevGuild.AspNetCore.Services.Storage.FileSystem
                 stream.Seek(0, SeekOrigin.Begin);
             }
 
-            fileName = this.ValidateAndNormalizeFileName(fileName, true);
+            fileName = this.ValidateAndNormalizeFileName(fileName, this.IsBackSlashUsedAsDirectorySeparator());
             var fullPath = Path.Combine(this.baseDirectory, fileName);
             var containingDir = Path.GetDirectoryName(fullPath);
             if (containingDir != null && !Directory.Exists(containingDir))
@@ -103,7 +103,7 @@ namespace DevGuild.AspNetCore.Services.Storage.FileSystem
                 throw new ArgumentNullException($"{nameof(fileName)} is null", nameof(fileName));
             }
 
-            fileName = this.ValidateAndNormalizeFileName(fileName, true);
+            fileName = this.ValidateAndNormalizeFileName(fileName, this.IsBackSlashUsedAsDirectorySeparator());
             var fullPath = Path.Combine(this.baseDirectory, fileName);
 
             try
@@ -137,6 +137,16 @@ namespace DevGuild.AspNetCore.Services.Storage.FileSystem
             }
 
             return Task.FromResult(0);
+        }
+
+        private Boolean IsBackSlashUsedAsDirectorySeparator()
+        {
+            switch (Path.DirectorySeparatorChar)
+            {
+                case '\\': return true;
+                case '/': return false;
+                default: throw new InvalidOperationException("Unexpected directory separator configured for this system");
+            }
         }
     }
 }
