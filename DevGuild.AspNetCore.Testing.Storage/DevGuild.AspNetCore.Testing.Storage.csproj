@@ -3,10 +3,11 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <Description>Contains class Ensure that can be used to validate method arguments or object state.</Description>
+    <Description>Contains storage services mocks.</Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JetBrains.Annotations" Version="2018.3.0" />
+    <ProjectReference Include="..\DevGuild.AspNetCore.Services.Storage\DevGuild.AspNetCore.Services.Storage.csproj" />
   </ItemGroup>
+
 </Project>

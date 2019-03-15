@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="../MSBuild/Nuget.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <Description>Contains database mocking extensions.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DevGuild.AspNetCore.Services.Data.Entity\DevGuild.AspNetCore.Services.Data.Entity.csproj" />
+    <ProjectReference Include="..\DevGuild.AspNetCore.Testing\DevGuild.AspNetCore.Testing.csproj" />
+  </ItemGroup>
+
+</Project>
