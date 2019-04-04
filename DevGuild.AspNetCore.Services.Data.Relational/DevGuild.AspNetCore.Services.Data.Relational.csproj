@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="../MSBuild/Nuget.props" />
+  <Import Project="../MSBuild/Build.props" />
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
     <Description>Contains abstraction for relational database connection factory and other extensions for relational database api.</Description>
   </PropertyGroup>
 

@@ -2,12 +2,12 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>DevGuild</Authors>
-    <AssemblyVersion>0.7.0.0</AssemblyVersion>
-    <FileVersion>0.7.0.0</FileVersion>
-    <Version>0.7.0</Version>
+    <AssemblyVersion>0.8.0.0</AssemblyVersion>
+    <FileVersion>0.8.0.0</FileVersion>
+    <Version>0.8.0</Version>
     <Copyright>© 2017-2018 DevGuild</Copyright>
     <PackageProjectUrl>https://github.com/DevGuildRu/libraries-aspnetcore</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/DevGuildRu/libraries-aspnetcore/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/DevGuildRu/libraries-aspnetcore</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
