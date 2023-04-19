@@ -8,7 +8,7 @@ namespace DevGuild.AspNetCore.Services.Identity.Models
     /// <summary>
     /// Represents a User entity.
     /// </summary>
-    /// <seealso cref="Microsoft.AspNetCore.Identity.IdentityUser{System.Guid}" />
+    /// <seealso cref="IdentityUser{Guid}" />
     public class User : IdentityUser<Guid>
     {
         /// <summary>

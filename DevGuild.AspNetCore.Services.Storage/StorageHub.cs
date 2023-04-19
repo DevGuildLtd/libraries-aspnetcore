@@ -7,7 +7,7 @@ namespace DevGuild.AspNetCore.Services.Storage
     /// <summary>
     /// Represents implementation of the storage hub.
     /// </summary>
-    /// <seealso cref="DevGuild.AspNet.Services.Storage.IStorageHub" />
+    /// <seealso cref="IStorageHub" />
     public sealed class StorageHub : IStorageHub
     {
         private readonly StorageHubConfiguration configuration;

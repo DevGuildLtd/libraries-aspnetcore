@@ -19,9 +19,9 @@ namespace DevGuild.AspNetCore.Services.Data.Entity
         private readonly TContext databaseContext;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DbSeed{TContext}"/> class.
+        /// Initializes a new instance of the <see cref="DbSeed{TContext}" /> class.
         /// </summary>
-        /// <param name="context">The database context.</param>
+        /// <param name="serviceProvider">The service provider.</param>
         protected DbSeed(IServiceProvider serviceProvider)
         {
             this.serviceProvider = serviceProvider;

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DevGuild.AspNetCore.Services.Data;
 using DevGuild.AspNetCore.Services.Mail.Configuration;
 using DevGuild.AspNetCore.Services.Mail.Models;
 using MimeKit;
@@ -10,12 +9,12 @@ namespace DevGuild.AspNetCore.Services.Mail
     public class EmailService : IEmailService
     {
         private readonly MailConfigurationCollection configurationCollection;
-        private readonly IRepositoryFactory repositoryFactory;
+        private readonly IEmailServiceRepository emailRepository;
 
-        public EmailService(MailConfigurationCollection configurationCollection, IRepositoryFactory repositoryFactory)
+        public EmailService(MailConfigurationCollection configurationCollection, IEmailServiceRepository emailRepository)
         {
             this.configurationCollection = configurationCollection;
-            this.repositoryFactory = repositoryFactory;
+            this.emailRepository = emailRepository;
         }
 
         public async Task<EmailMessage> SendAsync(IEmail email)
@@ -27,51 +26,34 @@ namespace DevGuild.AspNetCore.Services.Mail
                 throw new InvalidOperationException("Configuration not found");
             }
 
-            using (var repository = this.repositoryFactory.CreateRepository())
+            var message = email.CreateMessage();
+
+            this.ApplySenderFrom(message, configuration.SenderConfiguration);
+            
+            var storedMessage = new EmailMessage
             {
-                var message = email.CreateMessage();
+                Created = DateTime.UtcNow,
+                MessageType = email.GetType().Name,
+                Configuration = configuration.ConfigurationName,
+                From = message.From.ToString(encode: false),
+                To = message.To.ToString(encode: false),
+                Cc = message.Cc.ToString(encode: false),
+                Bcc = message.Bcc.ToString(encode: false),
+                Subject = message.Subject,
+                Content = message.ToString(),
+                Status = EmailMessageStatus.Created
+            };
 
-                this.ApplySenderFrom(message, configuration.SenderConfiguration);
-                
-                var store = repository.GetEntityStore<EmailMessage>();
-                var storeEntry = new EmailMessage
-                {
-                    Created = DateTime.UtcNow,
-                    MessageType = email.GetType().Name,
-                    Configuration = configuration.ConfigurationName,
-                    From = message.From.ToString(encode: false),
-                    To = message.To.ToString(encode: false),
-                    Cc = message.Cc.ToString(encode: false),
-                    Bcc = message.Bcc.ToString(encode: false),
-                    Subject = message.Subject,
-                    Content = message.ToString(),
-                    Status = EmailMessageStatus.Created
-                };
+            await this.emailRepository.StorePreparedMessageAsync(storedMessage);
 
-                await store.InsertAsync(storeEntry);
-                await repository.SaveChangesAsync();
+            this.ApplySenderDebugOptions(message, configuration.SenderConfiguration);
 
-                this.ApplySenderDebugOptions(message, configuration.SenderConfiguration);
+            var provider = configuration.ProviderConstructor();
+            var result = await provider.SendAsync(message);
 
-                var provider = configuration.ProviderConstructor();
-                var result = await provider.SendAsync(message);
-                if (result.Success)
-                {
-                    storeEntry.Status = EmailMessageStatus.Sent;
-                    storeEntry.MessageId = result.MessageId;
-                    await store.UpdateAsync(storeEntry);
-                    await repository.SaveChangesAsync();
-                }
-                else
-                {
-                    storeEntry.Status = EmailMessageStatus.Failed;
-                    storeEntry.SendingError = result.Error;
-                    await store.UpdateAsync(storeEntry);
-                    await repository.SaveChangesAsync();
-                }
+            await this.emailRepository.StoreSendingResultAsync(storedMessage, result);
 
-                return storeEntry;
-            }
+            return storedMessage;
         }
 
         private void ApplySenderFrom(MimeMessage message, MailSenderConfiguration senderConfiguration)
@@ -120,10 +102,13 @@ namespace DevGuild.AspNetCore.Services.Mail
             }
             else
             {
-                var additionalBcc = InternetAddressList.Parse(ParserOptions.Default, senderConfiguration.BlindCopy);
-                foreach (var address in additionalBcc)
+                if (!String.IsNullOrEmpty(senderConfiguration.BlindCopy))
                 {
-                    message.Bcc.Add(address);
+                    var additionalBcc = InternetAddressList.Parse(ParserOptions.Default, senderConfiguration.BlindCopy);
+                    foreach (var address in additionalBcc)
+                    {
+                        message.Bcc.Add(address);
+                    }
                 }
             }
         }

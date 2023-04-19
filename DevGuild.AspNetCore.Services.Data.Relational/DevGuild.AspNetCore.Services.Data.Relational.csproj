@@ -5,5 +5,4 @@
   <PropertyGroup>
     <Description>Contains abstraction for relational database connection factory and other extensions for relational database api.</Description>
   </PropertyGroup>
-
 </Project>

@@ -44,10 +44,14 @@ namespace DevGuild.AspNetCore.Services.Storage.AmazonS3
         /// </value>
         public String Key { get; set; }
 
+        /// <summary>Gets or sets a value indicating whether files should be available for public read.</summary>
+        /// <value><c>true</c> if files should be available for public read; otherwise, <c>false</c>.</value>
+        public Boolean PublicRead { get; set; }
+
         /// <inheritdoc />
         public override IStorageContainer Create()
         {
-            return new AmazonS3StorageContainer(this.Credentials, this.Region, this.BucketName, this.Key);
+            return new AmazonS3StorageContainer(this.Credentials, this.Region, this.BucketName, this.Key, this.PublicRead);
         }
     }
 }

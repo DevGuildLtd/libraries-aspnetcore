@@ -356,14 +356,14 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
         /// <param name="additionalData">The additional data dictionary that could be used to pass additional data.</param>
         /// <returns>A task that represents the operation and contains action result as a result.</returns>
         /// <remarks>By default this method redirects to Index action.</remarks>
-        protected virtual Task<ActionResult> GetEditSuccessResultAsync(TEntity entity, TEditModel model, Dictionary<String, Object> additionalData)
+        protected virtual Task<IActionResult> GetEditSuccessResultAsync(TEntity entity, TEditModel model, Dictionary<String, Object> additionalData)
         {
             if (this.Overrides.GetEditSuccessResult != null)
             {
                 return this.Overrides.GetEditSuccessResult(entity, model, additionalData);
             }
 
-            return Task.FromResult<ActionResult>(this.RedirectToAction("Index"));
+            return Task.FromResult<IActionResult>(this.RedirectToAction("Index"));
         }
 
         /// <summary>
@@ -373,14 +373,14 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
         /// <param name="model">The edit model.</param>
         /// <returns>A task that represents the operation and contains action result as a result.</returns>
         /// <remarks>By default this method creates the ViewResult with the specified model.</remarks>
-        protected virtual Task<ActionResult> GetEditViewResultAsync(TEntity entity, TEditModel model)
+        protected virtual Task<IActionResult> GetEditViewResultAsync(TEntity entity, TEditModel model)
         {
             if (this.Overrides.GetEditViewResult != null)
             {
                 return this.Overrides.GetEditViewResult(entity, model);
             }
 
-            return Task.FromResult<ActionResult>(this.View(model));
+            return Task.FromResult<IActionResult>(this.View(model));
         }
     }
 }

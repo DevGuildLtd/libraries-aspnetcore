@@ -14,14 +14,14 @@ namespace DevGuild.AspNetCore.Services.Bundling
 {
     public class BundlingConfigurationService : IBundlingConfigurationService
     {
-        private readonly IHostingEnvironment hostingEnvironment;
+        private readonly IWebHostEnvironment hostingEnvironment;
         private readonly BundlingOptions options;
 
         private Boolean initialized = false;
         private Dictionary<String, ScriptsBundle> scriptsBundles = null;
         private Dictionary<String, StylesBundle> stylesBundles = null;
 
-        public BundlingConfigurationService(IHostingEnvironment hostingEnvironment, IOptions<BundlingOptions> options)
+        public BundlingConfigurationService(IWebHostEnvironment hostingEnvironment, IOptions<BundlingOptions> options)
         {
             this.hostingEnvironment = hostingEnvironment;
             this.options = options.Value;
@@ -131,12 +131,10 @@ namespace DevGuild.AspNetCore.Services.Bundling
             }
 
             String configContent;
-            using (var configStream = configFile.CreateReadStream())
+            await using (var configStream = configFile.CreateReadStream())
             {
-                using (var reader = new StreamReader(configStream))
-                {
-                    configContent = await reader.ReadToEndAsync();
-                }
+                using var reader = new StreamReader(configStream);
+                configContent = await reader.ReadToEndAsync();
             }
 
             return JsonConvert.DeserializeObject<BundlesConfiguration>(configContent);

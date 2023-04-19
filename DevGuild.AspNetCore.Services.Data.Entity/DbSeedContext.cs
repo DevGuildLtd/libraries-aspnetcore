@@ -132,9 +132,9 @@ namespace DevGuild.AspNetCore.Services.Data.Entity
         private Tuple<Expression, Expression[]> GetEntityKeysFromExpression<TEntity, TKey>(Expression<Func<TEntity, TKey>> expression)
         {
             var body = expression.Body;
-            if (body is NewExpression newExpresion)
+            if (body is NewExpression newExpression)
             {
-                return Tuple.Create<Expression, Expression[]>(expression.Parameters.Single(), newExpresion.Arguments.ToArray());
+                return Tuple.Create<Expression, Expression[]>(expression.Parameters.Single(), newExpression.Arguments.ToArray());
             }
 
             if (body is MemberExpression memberExpression)

@@ -7,7 +7,7 @@ namespace DevGuild.AspNetCore.Services.Storage.FileSystem
     /// <summary>
     /// Represents file system storage container.
     /// </summary>
-    /// <seealso cref="DevGuild.AspNet.Services.Storage.StorageContainer" />
+    /// <seealso cref="StorageContainer" />
     public sealed class FileSystemStorageContainer : StorageContainer
     {
         private readonly String baseDirectory;

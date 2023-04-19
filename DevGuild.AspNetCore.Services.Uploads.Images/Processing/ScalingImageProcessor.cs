@@ -35,12 +35,11 @@ namespace DevGuild.AspNetCore.Services.Uploads.Images.Processing
                 return Task.FromResult(image);
             }
 
-            using (var bitmap = SKBitmap.FromImage(image))
-            using (var newBitmap = bitmap.Resize(new SKImageInfo(newSize.Width, newSize.Height), SKBitmapResizeMethod.Lanczos3))
-            {
-                image.Dispose();
-                return Task.FromResult(SKImage.FromBitmap(newBitmap));
-            }
+            using var bitmap = SKBitmap.FromImage(image);
+            using var newBitmap = bitmap.Resize(new SKImageInfo(newSize.Width, newSize.Height), SKFilterQuality.High);
+
+            image.Dispose();
+            return Task.FromResult(SKImage.FromBitmap(newBitmap));
         }
     }
 }

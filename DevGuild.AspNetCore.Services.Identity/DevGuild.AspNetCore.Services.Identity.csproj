@@ -1,20 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="../MSBuild/Nuget.props" />
   <Import Project="../MSBuild/Build.props" />
+  <Import Project="../MSBuild/References/Microsoft.EntityFrameworkCore.props" />
+  <Import Project="../MSBuild/References/Microsoft.Extensions.Identity.Stores.props" />
 
   <PropertyGroup>
     <Description>Additional identity-related services.</Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.3" />
-    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="2.2.0" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DevGuild.AspNetCore.Services.Data.Entity\DevGuild.AspNetCore.Services.Data.Entity.csproj" />
     <ProjectReference Include="..\DevGuild.AspNetCore.Services.Data\DevGuild.AspNetCore.Services.Data.csproj" />
   </ItemGroup>
-
 </Project>

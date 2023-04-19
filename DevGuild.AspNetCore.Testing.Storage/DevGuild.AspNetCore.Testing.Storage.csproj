@@ -9,5 +9,4 @@
   <ItemGroup>
     <ProjectReference Include="..\DevGuild.AspNetCore.Services.Storage\DevGuild.AspNetCore.Services.Storage.csproj" />
   </ItemGroup>
-
 </Project>

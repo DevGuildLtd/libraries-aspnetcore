@@ -1,22 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="../MSBuild/Nuget.props" />
   <Import Project="../MSBuild/Build.props" />
+  <Import Project="../MSBuild/References/Microsoft.Extensions.DependencyInjection.Abstractions.props" />
+  <Import Project="../MSBuild/References/Microsoft.Extensions.Options.ConfigurationExtensions.props" />
+  <Import Project="../MSBuild/References/Newtonsoft.Json.props" />
+  <Import Project="../MSBuild/References/Microsoft.EntityFrameworkCore.props" />
 
   <PropertyGroup>
     <Description>Contains models and services that can be used to handle uploaded files.</Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.3" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.2.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\DevGuild.AspNetCore.Contracts\DevGuild.AspNetCore.Contracts.csproj" />
     <ProjectReference Include="..\DevGuild.AspNetCore.Services.Data\DevGuild.AspNetCore.Services.Data.csproj" />
     <ProjectReference Include="..\DevGuild.AspNetCore.Services.Storage\DevGuild.AspNetCore.Services.Storage.csproj" />
   </ItemGroup>
-
 </Project>

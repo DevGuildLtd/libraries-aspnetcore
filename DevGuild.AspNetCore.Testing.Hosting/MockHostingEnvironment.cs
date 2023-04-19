@@ -5,7 +5,7 @@ using Microsoft.Extensions.FileProviders;
 
 namespace DevGuild.AspNetCore.Testing.Hosting
 {
-    public class MockHostingEnvironment : IHostingEnvironment
+    public class MockHostingEnvironment : IWebHostEnvironment
     {
         public MockHostingEnvironment(String applicationName, String environmentName, String contentRootPath, String webRootPath)
         {

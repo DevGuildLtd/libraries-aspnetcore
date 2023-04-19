@@ -110,7 +110,7 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
         /// <value>
         /// The override implementation of the <see cref="BasicCrudEditActionHandler{TIdentifier,TEntity,TDetailsModel,TEditModel}.GetEditSuccessResultAsync"/> method of the related action handler.
         /// </value>
-        public Func<TEntity, TEditModel, Dictionary<String, Object>, Task<ActionResult>> GetEditSuccessResult { get; set; }
+        public Func<TEntity, TEditModel, Dictionary<String, Object>, Task<IActionResult>> GetEditSuccessResult { get; set; }
 
         /// <summary>
         /// Gets or sets the override implementation of the <see cref="BasicCrudEditActionHandler{TIdentifier,TEntity,TDetailsModel,TEditModel}.GetEditViewResultAsync" /> method of the related action handler.
@@ -118,6 +118,6 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
         /// <value>
         /// The override implementation of the <see cref="BasicCrudEditActionHandler{TIdentifier,TEntity,TDetailsModel,TEditModel}.GetEditViewResultAsync"/> method of the related action handler.
         /// </value>
-        public Func<TEntity, TEditModel, Task<ActionResult>> GetEditViewResult { get; set; }
+        public Func<TEntity, TEditModel, Task<IActionResult>> GetEditViewResult { get; set; }
     }
 }

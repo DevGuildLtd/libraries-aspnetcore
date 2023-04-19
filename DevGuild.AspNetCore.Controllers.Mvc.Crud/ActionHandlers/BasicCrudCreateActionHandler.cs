@@ -225,14 +225,14 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
         /// <param name="additionalData">The additional data dictionary that could be used to pass additional data.</param>
         /// <returns>A task that represents the operation and contains action result as a result.</returns>
         /// <remarks>By default this method redirects to Index action.</remarks>
-        protected virtual Task<ActionResult> GetCreateSuccessResultAsync(TEntity entity, TCreateModel model, Dictionary<String, Object> additionalData)
+        protected virtual Task<IActionResult> GetCreateSuccessResultAsync(TEntity entity, TCreateModel model, Dictionary<String, Object> additionalData)
         {
             if (this.Overrides.GetCreateSuccessResult != null)
             {
                 return this.Overrides.GetCreateSuccessResult(entity, model, additionalData);
             }
 
-            return Task.FromResult<ActionResult>(this.RedirectToAction("Index"));
+            return Task.FromResult<IActionResult>(this.RedirectToAction("Index"));
         }
 
         /// <summary>
@@ -241,14 +241,14 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
         /// <param name="model">The create model.</param>
         /// <returns>A task that represents the operation and contains action result as a result.</returns>
         /// <remarks>By default this method creates the ViewResult with the specified model.</remarks>
-        protected virtual Task<ActionResult> GetCreateViewResultAsync(TCreateModel model)
+        protected virtual Task<IActionResult> GetCreateViewResultAsync(TCreateModel model)
         {
             if (this.Overrides.GetCreateViewResult != null)
             {
                 return this.Overrides.GetCreateViewResult(model);
             }
 
-            return Task.FromResult<ActionResult>(this.View(model));
+            return Task.FromResult<IActionResult>(this.View(model));
         }
     }
 }

@@ -9,5 +9,4 @@
   <ItemGroup>
     <ProjectReference Include="..\DevGuild.AspNetCore.Services.Data.Relational\DevGuild.AspNetCore.Services.Data.Relational.csproj" />
   </ItemGroup>
-
 </Project>

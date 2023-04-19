@@ -40,7 +40,7 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
         /// Handles the GET request for the custom operation action.
         /// </summary>
         /// <param name="id">The identifier of the entity.</param>
-        /// <returns>An <see cref="ActionResult"/> that renders custom operation action form.</returns>
+        /// <returns>An <see cref="IActionResult"/> that renders custom operation action form.</returns>
         public async Task<IActionResult> Execute(TIdentifier id)
         {
             var entity = await this.QuerySingleEntityAsync(id);
@@ -54,8 +54,7 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
 
             var model = new TOperationModel();
             await this.InitializeOperationModelAsync(id, entity, model, true);
-
-            return this.View(model);
+            return await this.GetOperationViewResultAsync(id, entity, model);
         }
 
         /// <summary>
@@ -63,7 +62,7 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
         /// </summary>
         /// <param name="id">The identifier of the entity.</param>
         /// <param name="model">The operation model.</param>
-        /// <returns>An <see cref="ActionResult"/> that redirects to another page on success or renders custom operation action form again on failure.</returns>
+        /// <returns>An <see cref="IActionResult"/> that redirects to another page on success or renders custom operation action form again on failure.</returns>
         public async Task<IActionResult> Execute(TIdentifier id, TOperationModel model)
         {
             var entity = await this.QuerySingleEntityAsync(id);
@@ -82,7 +81,7 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
             }
 
             await this.InitializeOperationModelAsync(id, entity, model, false);
-            return this.View(model);
+            return await this.GetOperationViewResultAsync(id, entity, model);
         }
 
         /// <summary>
@@ -166,6 +165,25 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
         }
 
         /// <summary>
+        /// Asynchronously gets the action result that is used to display the form for the custom operation.
+        /// </summary>
+        /// <param name="id">The identifier of the entity.</param>
+        /// <param name="entity">The entity.</param>
+        /// <param name="model">The operation model.</param>
+        /// <returns>A task that represents the operation and contains action result as a result.</returns>
+        /// <remarks>By default this method creates the ViewResult with the specified model.</remarks>
+        protected virtual Task<IActionResult> GetOperationViewResultAsync(TIdentifier id, TEntity entity, TOperationModel model)
+        {
+            if (this.Overrides.GetOperationViewResult != null)
+            {
+                return this.Overrides.GetOperationViewResult(id, entity, model);
+            }
+
+            IActionResult result = this.View(model);
+            return Task.FromResult(result);
+        }
+
+        /// <summary>
         /// Asynchronously gets the successful action result for the custom operation.
         /// </summary>
         /// <param name="id">The identifier of the entity.</param>
@@ -173,14 +191,14 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
         /// <param name="model">The operation model.</param>
         /// <returns>A task that represents the operation and contains action result as a result.</returns>
         /// <remarks>By default this method redirects to Details action.</remarks>
-        protected virtual Task<ActionResult> GetOperationSuccessResultAsync(TIdentifier id, TEntity entity, TOperationModel model)
+        protected virtual Task<IActionResult> GetOperationSuccessResultAsync(TIdentifier id, TEntity entity, TOperationModel model)
         {
             if (this.Overrides.GetOperationSuccessResult != null)
             {
                 return this.Overrides.GetOperationSuccessResult(id, entity, model);
             }
 
-            ActionResult result = this.RedirectToAction("Details", new { id = id });
+            IActionResult result = this.RedirectToAction("Details", new { id = id });
             return Task.FromResult(result);
         }
     }

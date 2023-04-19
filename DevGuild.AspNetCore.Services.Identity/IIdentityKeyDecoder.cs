@@ -13,9 +13,9 @@ namespace DevGuild.AspNetCore.Services.Identity
     public interface IIdentityKeyDecoder<out TKey>
     {
         /// <summary>
-        /// Decodes the user identifier.
+        /// Decodes the user identifier from provided claims principal.
         /// </summary>
-        /// <param name="identity">The identity.</param>
+        /// <param name="principal">The claims principal.</param>
         /// <returns>Decoded key.</returns>
         TKey DecodeUserId(ClaimsPrincipal principal);
     }

@@ -77,7 +77,7 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
         /// <value>
         /// The override implementation of the <see cref="BasicCrudCreateActionHandler{TIdentifier,TEntity,TCreateModel}.GetCreateSuccessResultAsync"/> method of the related action handler.
         /// </value>
-        public Func<TEntity, TCreateModel, Dictionary<String, Object>, Task<ActionResult>> GetCreateSuccessResult { get; set; }
+        public Func<TEntity, TCreateModel, Dictionary<String, Object>, Task<IActionResult>> GetCreateSuccessResult { get; set; }
 
         /// <summary>
         /// Gets or sets the override implementation of the <see cref="BasicCrudCreateActionHandler{TIdentifier,TEntity,TCreateModel}.GetCreateViewResultAsync" /> method of the related action handler.
@@ -85,6 +85,6 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
         /// <value>
         /// The override implementation of the <see cref="BasicCrudCreateActionHandler{TIdentifier,TEntity,TCreateModel}.GetCreateViewResultAsync"/> method of the related action handler.
         /// </value>
-        public Func<TCreateModel, Task<ActionResult>> GetCreateViewResult { get; set; }
+        public Func<TCreateModel, Task<IActionResult>> GetCreateViewResult { get; set; }
     }
 }

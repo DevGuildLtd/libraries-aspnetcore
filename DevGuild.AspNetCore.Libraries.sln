@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2036
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevGuild.AspNetCore.Services.Bundling", "DevGuild.AspNetCore.Services.Bundling\DevGuild.AspNetCore.Services.Bundling.csproj", "{892279F2-4335-4ECE-918B-35C6FD2C1DBC}"
 EndProject
@@ -45,7 +45,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevGuild.AspNetCore.Control
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSBuild", "MSBuild", "{C374A580-137A-4D2E-91C4-7DB0C3B67D43}"
 	ProjectSection(SolutionItems) = preProject
-		msbuild\NuGet.props = msbuild\NuGet.props
+		MSBuild\Build.props = MSBuild\Build.props
+		MSBuild\NuGet.props = MSBuild\NuGet.props
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevGuild.AspNetCore.Controls.HybridForms", "DevGuild.AspNetCore.Controls.HybridForms\DevGuild.AspNetCore.Controls.HybridForms.csproj", "{4C3E22D7-439F-427D-959D-74C519C40F18}"
@@ -58,9 +59,49 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevGuild.AspNetCore.Service
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevGuild.AspNetCore.Services.Uploads.Files", "DevGuild.AspNetCore.Services.Uploads.Files\DevGuild.AspNetCore.Services.Uploads.Files.csproj", "{56B8E663-417F-4C35-8CAC-FDAAF3AF4500}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevGuild.AspNetCore.Services.Logging", "DevGuild.AspNetCore.Services.Logging\DevGuild.AspNetCore.Services.Logging.csproj", "{E44B3E4B-5659-41D1-812B-056F0BBC0E40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevGuild.AspNetCore.Services.Logging.Data", "DevGuild.AspNetCore.Services.Logging.Data\DevGuild.AspNetCore.Services.Logging.Data.csproj", "{9CDCE5CB-8E81-472D-AFA0-E9922710F2A9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevGuild.AspNetCore.Services.Logging.Data", "DevGuild.AspNetCore.Services.Logging.Data\DevGuild.AspNetCore.Services.Logging.Data.csproj", "{EEBC9500-9268-47D9-BBB2-8D9802EEFBBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevGuild.AspNetCore.Services.Logging", "DevGuild.AspNetCore.Services.Logging\DevGuild.AspNetCore.Services.Logging.csproj", "{BC0EAB58-B7E4-4FC4-8879-95123C998150}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevGuild.AspNetCore.Testing", "DevGuild.AspNetCore.Testing\DevGuild.AspNetCore.Testing.csproj", "{43B873F2-3A38-46F8-947C-F47629310CDA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevGuild.AspNetCore.Testing.Data", "DevGuild.AspNetCore.Testing.Data\DevGuild.AspNetCore.Testing.Data.csproj", "{1DDC4F29-0568-4E71-BE5F-A8C1F3E772DC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevGuild.AspNetCore.Testing.Hosting", "DevGuild.AspNetCore.Testing.Hosting\DevGuild.AspNetCore.Testing.Hosting.csproj", "{27BBD226-5A86-4FF9-AE29-70F9FC3C23DC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevGuild.AspNetCore.Testing.Identity", "DevGuild.AspNetCore.Testing.Identity\DevGuild.AspNetCore.Testing.Identity.csproj", "{756BBA81-D472-4570-8578-EC77B70A9470}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevGuild.AspNetCore.Testing.Mvc", "DevGuild.AspNetCore.Testing.Mvc\DevGuild.AspNetCore.Testing.Mvc.csproj", "{816B853A-5596-4CA9-B2B7-DE239F360ED7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevGuild.AspNetCore.Testing.Storage", "DevGuild.AspNetCore.Testing.Storage\DevGuild.AspNetCore.Testing.Storage.csproj", "{38649979-218D-4370-B9EF-1E7EBAC4C565}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", "{E6EF175E-3FED-432D-9681-973C1EB6C2EA}"
+	ProjectSection(SolutionItems) = preProject
+		MSBuild\References\AWSSDK.S3.props = MSBuild\References\AWSSDK.S3.props
+		MSBuild\References\AWSSDK.SimpleEmail.props = MSBuild\References\AWSSDK.SimpleEmail.props
+		MSBuild\References\JetBrains.Annotations.props = MSBuild\References\JetBrains.Annotations.props
+		MSBuild\References\MailKit.props = MSBuild\References\MailKit.props
+		MSBuild\References\Microsoft.Data.SqlClient.props = MSBuild\References\Microsoft.Data.SqlClient.props
+		MSBuild\References\Microsoft.EntityFrameworkCore.props = MSBuild\References\Microsoft.EntityFrameworkCore.props
+		MSBuild\References\Microsoft.EntityFrameworkCore.Relational.props = MSBuild\References\Microsoft.EntityFrameworkCore.Relational.props
+		MSBuild\References\Microsoft.Extensions.DependencyInjection.Abstractions.props = MSBuild\References\Microsoft.Extensions.DependencyInjection.Abstractions.props
+		MSBuild\References\Microsoft.Extensions.DependencyInjection.props = MSBuild\References\Microsoft.Extensions.DependencyInjection.props
+		MSBuild\References\Microsoft.Extensions.FileProviders.Physical.props = MSBuild\References\Microsoft.Extensions.FileProviders.Physical.props
+		MSBuild\References\Microsoft.Extensions.Identity.Stores.props = MSBuild\References\Microsoft.Extensions.Identity.Stores.props
+		MSBuild\References\Microsoft.Extensions.Logging.Abstractions.props = MSBuild\References\Microsoft.Extensions.Logging.Abstractions.props
+		MSBuild\References\Microsoft.Extensions.Logging.Configuration.props = MSBuild\References\Microsoft.Extensions.Logging.Configuration.props
+		MSBuild\References\Microsoft.Extensions.Logging.props = MSBuild\References\Microsoft.Extensions.Logging.props
+		MSBuild\References\Microsoft.Extensions.Options.ConfigurationExtensions.props = MSBuild\References\Microsoft.Extensions.Options.ConfigurationExtensions.props
+		MSBuild\References\MimeKit.props = MSBuild\References\MimeKit.props
+		MSBuild\References\Newtonsoft.Json.props = MSBuild\References\Newtonsoft.Json.props
+		MSBuild\References\SkiaSharp.props = MSBuild\References\SkiaSharp.props
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevGuild.AspNetCore.Extensions.Security", "DevGuild.AspNetCore.Extensions.Security\DevGuild.AspNetCore.Extensions.Security.csproj", "{7C2A854F-8526-4013-8F9A-1DF0FB3013EF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevGuild.AspNetCore.Controllers.Mvc.Crud.Ordering", "DevGuild.AspNetCore.Controllers.Mvc.Crud.Ordering\DevGuild.AspNetCore.Controllers.Mvc.Crud.Ordering.csproj", "{2721637D-04FE-42A9-93BB-EF45752C68B3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevGuild.AspNetCore.Controllers.Mvc.Crud.Ordering.SqlServer", "DevGuild.AspNetCore.Controllers.Mvc.Crud.Ordering.SqlServer\DevGuild.AspNetCore.Controllers.Mvc.Crud.Ordering.SqlServer.csproj", "{F592C4C3-A228-41C4-B34A-CA28E96E6A5B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -168,17 +209,56 @@ Global
 		{56B8E663-417F-4C35-8CAC-FDAAF3AF4500}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56B8E663-417F-4C35-8CAC-FDAAF3AF4500}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56B8E663-417F-4C35-8CAC-FDAAF3AF4500}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E44B3E4B-5659-41D1-812B-056F0BBC0E40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E44B3E4B-5659-41D1-812B-056F0BBC0E40}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E44B3E4B-5659-41D1-812B-056F0BBC0E40}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E44B3E4B-5659-41D1-812B-056F0BBC0E40}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EEBC9500-9268-47D9-BBB2-8D9802EEFBBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EEBC9500-9268-47D9-BBB2-8D9802EEFBBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EEBC9500-9268-47D9-BBB2-8D9802EEFBBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EEBC9500-9268-47D9-BBB2-8D9802EEFBBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CDCE5CB-8E81-472D-AFA0-E9922710F2A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CDCE5CB-8E81-472D-AFA0-E9922710F2A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CDCE5CB-8E81-472D-AFA0-E9922710F2A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CDCE5CB-8E81-472D-AFA0-E9922710F2A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC0EAB58-B7E4-4FC4-8879-95123C998150}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC0EAB58-B7E4-4FC4-8879-95123C998150}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC0EAB58-B7E4-4FC4-8879-95123C998150}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC0EAB58-B7E4-4FC4-8879-95123C998150}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43B873F2-3A38-46F8-947C-F47629310CDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43B873F2-3A38-46F8-947C-F47629310CDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43B873F2-3A38-46F8-947C-F47629310CDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43B873F2-3A38-46F8-947C-F47629310CDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DDC4F29-0568-4E71-BE5F-A8C1F3E772DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DDC4F29-0568-4E71-BE5F-A8C1F3E772DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DDC4F29-0568-4E71-BE5F-A8C1F3E772DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DDC4F29-0568-4E71-BE5F-A8C1F3E772DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27BBD226-5A86-4FF9-AE29-70F9FC3C23DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27BBD226-5A86-4FF9-AE29-70F9FC3C23DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27BBD226-5A86-4FF9-AE29-70F9FC3C23DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27BBD226-5A86-4FF9-AE29-70F9FC3C23DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{756BBA81-D472-4570-8578-EC77B70A9470}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{756BBA81-D472-4570-8578-EC77B70A9470}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{756BBA81-D472-4570-8578-EC77B70A9470}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{756BBA81-D472-4570-8578-EC77B70A9470}.Release|Any CPU.Build.0 = Release|Any CPU
+		{816B853A-5596-4CA9-B2B7-DE239F360ED7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{816B853A-5596-4CA9-B2B7-DE239F360ED7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{816B853A-5596-4CA9-B2B7-DE239F360ED7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{816B853A-5596-4CA9-B2B7-DE239F360ED7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38649979-218D-4370-B9EF-1E7EBAC4C565}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38649979-218D-4370-B9EF-1E7EBAC4C565}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38649979-218D-4370-B9EF-1E7EBAC4C565}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38649979-218D-4370-B9EF-1E7EBAC4C565}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C2A854F-8526-4013-8F9A-1DF0FB3013EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C2A854F-8526-4013-8F9A-1DF0FB3013EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C2A854F-8526-4013-8F9A-1DF0FB3013EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C2A854F-8526-4013-8F9A-1DF0FB3013EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2721637D-04FE-42A9-93BB-EF45752C68B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2721637D-04FE-42A9-93BB-EF45752C68B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2721637D-04FE-42A9-93BB-EF45752C68B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2721637D-04FE-42A9-93BB-EF45752C68B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F592C4C3-A228-41C4-B34A-CA28E96E6A5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F592C4C3-A228-41C4-B34A-CA28E96E6A5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F592C4C3-A228-41C4-B34A-CA28E96E6A5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F592C4C3-A228-41C4-B34A-CA28E96E6A5B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E6EF175E-3FED-432D-9681-973C1EB6C2EA} = {C374A580-137A-4D2E-91C4-7DB0C3B67D43}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AC95EC74-2512-4862-B84C-9432B7B6D6F5}

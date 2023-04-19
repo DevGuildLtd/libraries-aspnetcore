@@ -64,11 +64,19 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
         public Func<TEntity, TCreateModel, Dictionary<String, Object>, Task> AfterEntityCreated { get; set; }
 
         /// <summary>
+        /// Gets or sets the override implementation of the <see cref="BasicHierarchicalCrudCreateActionHandler{TIdentifier,TEntity,TCreateModel}.GetCreateViewResultAsync" /> method of the related action handler.
+        /// </summary>
+        /// <value>
+        /// The override implementation of the <see cref="BasicHierarchicalCrudCreateActionHandler{TIdentifier,TEntity,TCreateModel}.GetCreateViewResultAsync"/> method of the related action handler.
+        /// </value>
+        public Func<TCreateModel, Task<IActionResult>> GetCreateViewResult { get; set; }
+
+        /// <summary>
         /// Gets or sets the override implementation of the <see cref="BasicHierarchicalCrudCreateActionHandler{TIdentifier,TEntity,TCreateModel}.GetCreateSuccessResultAsync" /> method of the related action handler.
         /// </summary>
         /// <value>
         /// The override implementation of the <see cref="BasicHierarchicalCrudCreateActionHandler{TIdentifier,TEntity,TCreateModel}.GetCreateSuccessResultAsync"/> method of the related action handler.
         /// </value>
-        public Func<TEntity, TCreateModel, Dictionary<String, Object>, Task<ActionResult>> GetCreateSuccessResult { get; set; }
+        public Func<TEntity, TCreateModel, Dictionary<String, Object>, Task<IActionResult>> GetCreateSuccessResult { get; set; }
     }
 }

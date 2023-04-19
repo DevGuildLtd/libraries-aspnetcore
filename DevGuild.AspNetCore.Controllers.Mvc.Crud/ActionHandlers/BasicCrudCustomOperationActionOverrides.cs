@@ -48,12 +48,21 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
         /// </value>
         public Func<TIdentifier, TEntity, TOperationModel, Task> ExecuteOperation { get; set; }
 
+
+        /// <summary>
+        /// Gets or sets the override implementation of the <see cref="BasicCrudCustomOperationActionHandler{TIdentifier,TEntity,TOperationModel}.GetOperationViewResultAsync"/> method of the related action handler.
+        /// </summary>
+        /// <value>
+        /// The override implementation of the <see cref="BasicCrudCustomOperationActionHandler{TIdentifier,TEntity,TOperationModel}.GetOperationViewResultAsync"/> method of the related action handler.
+        /// </value>
+        public Func<TIdentifier, TEntity, TOperationModel, Task<IActionResult>> GetOperationViewResult { get; set; }
+
         /// <summary>
         /// Gets or sets the override implementation of the <see cref="BasicCrudCustomOperationActionHandler{TIdentifier,TEntity,TOperationModel}.GetOperationSuccessResultAsync"/> method of the related action handler.
         /// </summary>
         /// <value>
         /// The override implementation of the <see cref="BasicCrudCustomOperationActionHandler{TIdentifier,TEntity,TOperationModel}.GetOperationSuccessResultAsync"/> method of the related action handler.
         /// </value>
-        public Func<TIdentifier, TEntity, TOperationModel, Task<ActionResult>> GetOperationSuccessResult { get; set; }
+        public Func<TIdentifier, TEntity, TOperationModel, Task<IActionResult>> GetOperationSuccessResult { get; set; }
     }
 }

@@ -52,7 +52,7 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
             await this.PermissionsValidator.DemandCanDetailsAsync(entity);
 
             var detailsModel = await this.ConvertToDetailsModelAsync(entity);
-            return this.View(detailsModel);
+            return await this.GetDetailsViewResultAsync(id, entity, detailsModel);
         }
 
         /// <summary>
@@ -69,6 +69,25 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
 
             var allowedProperties = await this.GetAllowedEntityPropertiesAsync(EntityPermissions.EntityProperty.Read);
             return this.ControllerServices.MappingManager.GetModelMapper<TEntity, TDetailsModel>().ConvertEntityToViewModel(entity, allowedProperties);
+        }
+
+        /// <summary>
+        /// Asynchronously gets the action result that is used to display the form for the Details action.
+        /// </summary>
+        /// <param name="id">The identifier of the entity.</param>
+        /// <param name="entity">The entity.</param>
+        /// <param name="model">The details model.</param>
+        /// <returns>A task that represents the operation and contains action result as a result.</returns>
+        /// <remarks>By default this method creates the ViewResult with the specified model.</remarks>
+        protected virtual Task<IActionResult> GetDetailsViewResultAsync(TIdentifier id, TEntity entity, TDetailsModel model)
+        {
+            if (this.Overrides.GetDetailsViewResult != null)
+            {
+                return this.Overrides.GetDetailsViewResult(id, entity, model);
+            }
+
+            IActionResult result = this.View(model);
+            return Task.FromResult(result);
         }
     }
 }

@@ -100,14 +100,14 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
         /// <param name="model">The index view model.</param>
         /// <returns>A task that represents the operation and contains action result as a result.</returns>
         /// <remarks>By default this method creates the ViewResult with the specified model.</remarks>
-        protected virtual Task<ActionResult> GetIndexViewResultAsync(TIndexViewModel model)
+        protected virtual Task<IActionResult> GetIndexViewResultAsync(TIndexViewModel model)
         {
             if (this.Overrides.GetIndexViewResult != null)
             {
                 return this.Overrides.GetIndexViewResult(model);
             }
 
-            return Task.FromResult<ActionResult>(this.View(model));
+            return Task.FromResult<IActionResult>(this.View(model));
         }
     }
 }

@@ -13,7 +13,7 @@ namespace DevGuild.AspNetCore.Services.Permissions.RoleRelation
     /// <typeparam name="TEntity">The type of the entity.</typeparam>
     /// <typeparam name="TCollectionItem">The type of the collection item.</typeparam>
     /// <typeparam name="TUserId">The type of the user identifier.</typeparam>
-    /// <seealso cref="DevGuild.AspNet.Services.Permissions.RoleRelation.UserRelation{TEntity, TUserId}" />
+    /// <seealso cref="UserRelation{TEntity, TUserId}" />
     public class CollectionUserRelation<TEntity, TCollectionItem, TUserId> : UserRelation<TEntity, TUserId>
     {
         private readonly Expression<Func<TEntity, IEnumerable<TCollectionItem>>> collectionExpression;

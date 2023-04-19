@@ -22,6 +22,7 @@ namespace DevGuild.AspNetCore.Services.Identity.Data
         /// </summary>
         /// <typeparam name="TContext">The type of the context.</typeparam>
         /// <typeparam name="TRole">The type of the role.</typeparam>
+        /// <typeparam name="TKey">The type of the key.</typeparam>
         /// <param name="context">The database seed context.</param>
         /// <param name="roles">The roles names.</param>
         /// <returns>A task that represents the operation.</returns>
@@ -45,6 +46,7 @@ namespace DevGuild.AspNetCore.Services.Identity.Data
         /// </summary>
         /// <typeparam name="TContext">The type of the context.</typeparam>
         /// <typeparam name="TRole">The type of the role.</typeparam>
+        /// <typeparam name="TKey">The type of the key.</typeparam>
         /// <param name="context">The database seed context.</param>
         /// <param name="roleName">The role name.</param>
         /// <returns>A task that represents the operation.</returns>
@@ -61,6 +63,7 @@ namespace DevGuild.AspNetCore.Services.Identity.Data
         /// </summary>
         /// <typeparam name="TContext">The type of the context.</typeparam>
         /// <typeparam name="TRole">The type of the role.</typeparam>
+        /// <typeparam name="TKey">The type of the key.</typeparam>
         /// <param name="context">The database seed context.</param>
         /// <param name="roleName">The role name.</param>
         /// <param name="initializer">The additional role initializer.</param>
@@ -93,6 +96,7 @@ namespace DevGuild.AspNetCore.Services.Identity.Data
         /// <typeparam name="TContext">The type of the context.</typeparam>
         /// <typeparam name="TUser">The type of the user.</typeparam>
         /// <typeparam name="TRole">The type of the role.</typeparam>
+        /// <typeparam name="TKey">The type of the key.</typeparam>
         /// <param name="context">The database seed context.</param>
         /// <param name="userName">Name of the user.</param>
         /// <param name="email">The user email.</param>
@@ -114,6 +118,7 @@ namespace DevGuild.AspNetCore.Services.Identity.Data
         /// <typeparam name="TContext">The type of the context.</typeparam>
         /// <typeparam name="TUser">The type of the user.</typeparam>
         /// <typeparam name="TRole">The type of the role.</typeparam>
+        /// <typeparam name="TKey">The type of the key.</typeparam>
         /// <param name="context">The database seed context.</param>
         /// <param name="userName">Name of the user.</param>
         /// <param name="email">The user email.</param>
@@ -141,6 +146,7 @@ namespace DevGuild.AspNetCore.Services.Identity.Data
                 EmailConfirmed = true
             };
 
+            initializer(created);
             await userManager.CreateAsync(created, password).ThrowOnErrorsAsync();
             foreach (var role in roles)
             {

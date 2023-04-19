@@ -10,7 +10,7 @@ namespace DevGuild.AspNetCore.Services.Permissions.RoleRelation
     /// </summary>
     /// <typeparam name="TEntity">The type of the entity.</typeparam>
     /// <typeparam name="TUserId">The type of the user identifier.</typeparam>
-    /// <seealso cref="DevGuild.AspNet.Services.Permissions.RoleRelation.UserRelation" />
+    /// <seealso cref="UserRelation" />
     public abstract class UserRelation<TEntity, TUserId> : UserRelation
     {
         /// <summary>

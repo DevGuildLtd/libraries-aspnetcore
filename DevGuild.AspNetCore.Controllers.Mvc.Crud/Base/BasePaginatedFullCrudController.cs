@@ -81,28 +81,40 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.Base
         /// </value>
         protected IEntityControllerServices ControllerServices { get; }
 
+        /// <summary>
+        /// Gets the repository service.
+        /// </summary>
+        /// <value>
+        /// The repository service.
+        /// </value>
         protected IRepository Repository => this.ControllerServices.Repository;
 
+        /// <summary>
+        /// Gets the permissions validator.
+        /// </summary>
+        /// <value>
+        /// The permissions validator.
+        /// </value>
         protected IEntityPermissionsValidator<TEntity> PermissionsValidator { get; }
 
         /// <summary>
         /// Handles the GET request for the Index action.
         /// </summary>
         /// <returns>An <see cref="ActionResult"/> that renders Index action page.</returns>
-        public Task<IActionResult> Index(Int32? page) => this.IndexHandler.Index(page);
+        public virtual Task<IActionResult> Index(Int32? page) => this.IndexHandler.Index(page);
 
         /// <summary>
         /// Handles the GET request for the Details action.
         /// </summary>
         /// <param name="id">The identifier of the entity.</param>
         /// <returns>An <see cref="ActionResult"/> that renders Details action page.</returns>
-        public Task<IActionResult> Details(TIdentifier id) => this.DetailsHandler.Details(id);
+        public virtual Task<IActionResult> Details(TIdentifier id) => this.DetailsHandler.Details(id);
 
         /// <summary>
         /// Handles the GET request for the Create action.
         /// </summary>
         /// <returns>An <see cref="ActionResult"/> that renders Create action form.</returns>
-        public Task<IActionResult> Create() => this.CreateHandler.Create();
+        public virtual Task<IActionResult> Create() => this.CreateHandler.Create();
 
         /// <summary>
         /// Handles the POST request for the Create action.
@@ -112,14 +124,14 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.Base
         /// <remarks>This method requires a valid anti-forgery token to be submitted.</remarks>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public Task<IActionResult> Create(TCreateModel model) => this.CreateHandler.Create(model);
+        public virtual Task<IActionResult> Create(TCreateModel model) => this.CreateHandler.Create(model);
 
         /// <summary>
         /// Handles the GET request for the Edit action.
         /// </summary>
         /// <param name="id">The identifier of the entity.</param>
         /// <returns>An <see cref="ActionResult"/> that renders Edit action form.</returns>
-        public Task<IActionResult> Edit(TIdentifier id) => this.EditHandler.Edit(id);
+        public virtual Task<IActionResult> Edit(TIdentifier id) => this.EditHandler.Edit(id);
 
         /// <summary>
         /// Handles the POST request for the Edit action.
@@ -130,14 +142,14 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.Base
         /// <remarks>This method requires a valid anti-forgery token to be submitted.</remarks>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public Task<IActionResult> Edit(TIdentifier id, TEditModel model) => this.EditHandler.Edit(id, model);
+        public virtual Task<IActionResult> Edit(TIdentifier id, TEditModel model) => this.EditHandler.Edit(id, model);
 
         /// <summary>
         /// Handles the GET request for the Delete action.
         /// </summary>
         /// <param name="id">The identifier of the entity.</param>
         /// <returns>An <see cref="ActionResult"/> that renders Delete action form.</returns>
-        public Task<IActionResult> Delete(TIdentifier id) => this.DeleteHandler.Delete(id);
+        public virtual Task<IActionResult> Delete(TIdentifier id) => this.DeleteHandler.Delete(id);
 
         /// <summary>
         /// Handles the POST request for the Delete action.
@@ -146,8 +158,12 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.Base
         /// <returns>An <see cref="ActionResult"/> that redirects to another page on success or renders Delete action form again on failure.</returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public Task<IActionResult> DeleteConfirmed(TIdentifier id) => this.DeleteHandler.DeleteConfirmed(id);
+        public virtual Task<IActionResult> DeleteConfirmed(TIdentifier id) => this.DeleteHandler.DeleteConfirmed(id);
 
+        /// <summary>
+        /// Creates the dependent entity permissions validator.
+        /// </summary>
+        /// <returns>A created permissions validator.</returns>
         protected virtual IEntityPermissionsValidator<TEntity> GetEntityPermissionsValidator()
         {
             return new DefaultEntityPermissionsValidator<TEntity>(

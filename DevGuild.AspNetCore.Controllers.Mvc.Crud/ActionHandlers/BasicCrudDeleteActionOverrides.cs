@@ -49,11 +49,19 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
         public Func<TEntity, Dictionary<String, Object>, Task> DeleteEntity { get; set; }
 
         /// <summary>
+        /// Gets or sets the override implementation of the <see cref="BasicCrudDeleteActionHandler{TIdentifier,TEntity,TDeleteModel}.GetDeleteViewResultAsync"/> method of the related action handler.
+        /// </summary>
+        /// <value>
+        /// The override implementation of the <see cref="BasicCrudDeleteActionHandler{TIdentifier,TEntity,TDeleteModel}.GetDeleteViewResultAsync"/> method of the related action handler.
+        /// </value>
+        public Func<TIdentifier, TEntity, TDeleteModel, Task<IActionResult>> GetDeleteViewResult { get; set; }
+
+        /// <summary>
         /// Gets or sets the override implementation of the <see cref="BasicCrudDeleteActionHandler{TIdentifier,TEntity,TDeleteModel}.GetDeleteSuccessResultAsync"/> method of the related action handler.
         /// </summary>
         /// <value>
         /// The override implementation of the <see cref="BasicCrudDeleteActionHandler{TIdentifier,TEntity,TDeleteModel}.GetDeleteSuccessResultAsync"/> method of the related action handler.
         /// </value>
-        public Func<TEntity, Dictionary<String, Object>, Task<ActionResult>> GetDeleteSuccessResult { get; set; }
+        public Func<TEntity, Dictionary<String, Object>, Task<IActionResult>> GetDeleteSuccessResult { get; set; }
     }
 }

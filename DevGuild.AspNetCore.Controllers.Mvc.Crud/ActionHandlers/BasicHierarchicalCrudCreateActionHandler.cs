@@ -236,6 +236,23 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
         }
 
         /// <summary>
+        /// Asynchronously gets the action result that is used to display the form for the Create action.
+        /// </summary>
+        /// <param name="model">The create model.</param>
+        /// <returns>A task that represents the operation and contains action result as a result.</returns>
+        /// <remarks>By default this method creates the ViewResult with the specified model.</remarks>
+        protected virtual Task<IActionResult> GetCreateViewResultAsync(TCreateModel model)
+        {
+            if (this.Overrides.GetCreateViewResult != null)
+            {
+                return this.Overrides.GetCreateViewResult(model);
+            }
+
+            IActionResult result = this.View(model);
+            return Task.FromResult(result);
+        }
+
+        /// <summary>
         /// Asynchronously gets the successful action result for the Create action.
         /// </summary>
         /// <param name="entity">The created entity.</param>
@@ -243,14 +260,14 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
         /// <param name="additionalData">The additional data dictionary that could be used to pass additional data.</param>
         /// <returns>A task that represents the operation and contains action result as a result.</returns>
         /// <remarks>By default this method redirects to Index action.</remarks>
-        protected virtual Task<ActionResult> GetCreateSuccessResultAsync(TEntity entity, TCreateModel model, Dictionary<String, Object> additionalData)
+        protected virtual Task<IActionResult> GetCreateSuccessResultAsync(TEntity entity, TCreateModel model, Dictionary<String, Object> additionalData)
         {
             if (this.Overrides.GetCreateSuccessResult != null)
             {
                 return this.Overrides.GetCreateSuccessResult(entity, model, additionalData);
             }
 
-            return Task.FromResult<ActionResult>(this.RedirectToAction("Index"));
+            return Task.FromResult<IActionResult>(this.RedirectToAction("Index"));
         }
     }
 }

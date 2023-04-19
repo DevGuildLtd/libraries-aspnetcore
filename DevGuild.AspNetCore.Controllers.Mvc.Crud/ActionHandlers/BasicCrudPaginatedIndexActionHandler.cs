@@ -48,7 +48,7 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
                 Items = new PaginationResult<TIndexItemModel>(items, paginationResult.Info),
             };
 
-            return this.View(model);
+            return await this.GetIndexViewResultAsync(model);
         }
 
         /// <summary>

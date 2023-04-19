@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
 
 namespace DevGuild.AspNetCore.Services.Data.Relational.SqlServer

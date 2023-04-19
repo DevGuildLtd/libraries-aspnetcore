@@ -1,12 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="../MSBuild/Nuget.props" />
   <Import Project="../MSBuild/Build.props" />
+  <Import Project="../MSBuild/References/JetBrains.Annotations.props" />
 
   <PropertyGroup>
     <Description>Contains class Ensure that can be used to validate method arguments or object state.</Description>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="JetBrains.Annotations" Version="2019.1.1" />
-  </ItemGroup>
 </Project>

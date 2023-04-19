@@ -1,14 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="../MSBuild/Nuget.props" />
   <Import Project="../MSBuild/Build.props" />
+  <Import Project="../MSBuild/References/JetBrains.Annotations.props" />
 
   <PropertyGroup>
     <Description>Contains base action handler class for MVC controllers.</Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JetBrains.Annotations" Version="2019.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
-
 </Project>

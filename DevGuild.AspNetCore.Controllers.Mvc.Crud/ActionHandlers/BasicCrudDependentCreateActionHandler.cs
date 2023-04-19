@@ -274,14 +274,14 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
         /// <param name="model">The create model.</param>
         /// <returns>A task that represents the operation and contains action result as a result.</returns>
         /// <remarks>By default this method creates the ViewResult with the specified model.</remarks>
-        protected virtual Task<ActionResult> GetCreateViewResultAsync(TParentEntity parent, TCreateModel model)
+        protected virtual Task<IActionResult> GetCreateViewResultAsync(TParentEntity parent, TCreateModel model)
         {
             if (this.Overrides.GetCreateViewResult != null)
             {
                 return this.Overrides.GetCreateViewResult(parent, model);
             }
 
-            return Task.FromResult<ActionResult>(this.View(model));
+            return Task.FromResult<IActionResult>(this.View(model));
         }
 
         /// <summary>
@@ -293,7 +293,7 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
         /// <param name="additionalData">The additional data dictionary that could be used to pass additional data.</param>
         /// <returns>A task that represents the operation and contains action result as a result.</returns>
         /// <remarks>By default this method redirects to Index action.</remarks>
-        protected virtual Task<ActionResult> GetCreateSuccessResultAsync(TParentEntity parent, TEntity entity, TCreateModel model, Dictionary<String, Object> additionalData)
+        protected virtual Task<IActionResult> GetCreateSuccessResultAsync(TParentEntity parent, TEntity entity, TCreateModel model, Dictionary<String, Object> additionalData)
         {
             if (this.Overrides.GetCreateSuccessResult != null)
             {
@@ -305,7 +305,7 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
             Ensure.State.NotNull(parentIdProperty);
             var parentId = (TParentIdentifier)parentIdProperty.GetValue(parent);
 
-            return Task.FromResult<ActionResult>(this.RedirectToAction("Index", new { parentId = parentId }));
+            return Task.FromResult<IActionResult>(this.RedirectToAction("Index", new { parentId = parentId }));
         }
     }
 }

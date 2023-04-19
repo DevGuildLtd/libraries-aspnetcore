@@ -7,7 +7,7 @@ namespace DevGuild.AspNetCore.Services.Uploads.Images.Configuration
     /// <summary>
     /// Represents base scaling image processor configuration.
     /// </summary>
-    /// <seealso cref="DevGuild.AspNet.Services.Uploads.Images.Configuration.ImageProcessorConfiguration" />
+    /// <seealso cref="ImageProcessorConfiguration" />
     public abstract class ImageScalingProcessorConfiguration : ImageProcessorConfiguration
     {
         /// <summary>

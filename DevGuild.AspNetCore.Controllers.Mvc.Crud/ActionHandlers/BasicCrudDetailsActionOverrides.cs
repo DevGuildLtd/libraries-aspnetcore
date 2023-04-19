@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
 {
@@ -16,11 +17,19 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
         where TEntity : class
     {
         /// <summary>
-        /// Gets or sets the override implementation of the <see cref="BaseCrudActionHandler{TIdentifier,TEntity,TOverrides}.QuerySingleEntityAsync"/> method of the related action handler.
+        /// Gets or sets the override implementation of the <see cref="BasicCrudDetailsActionHandler{TIdentifier,TEntity,TOverrides}.ConvertToDetailsModelAsync"/> method of the related action handler.
         /// </summary>
         /// <value>
-        /// The override implementation of the <see cref="BaseCrudActionHandler{TIdentifier,TEntity,TOverrides}.QuerySingleEntityAsync"/> method of the related action handler.
+        /// The override implementation of the <see cref="BasicCrudDetailsActionHandler{TIdentifier,TEntity,TOverrides}.ConvertToDetailsModelAsync"/> method of the related action handler.
         /// </value>
         public Func<TEntity, Task<TDetailsModel>> ConvertToDetailsModel { get; set; }
+
+        /// <summary>
+        /// Gets or sets the override implementation of the <see cref="BasicCrudDetailsActionHandler{TIdentifier,TEntity,TOverrides}.GetDetailsViewResultAsync"/> method of the related action handler.
+        /// </summary>
+        /// <value>
+        /// The override implementation of the <see cref="BasicCrudDetailsActionHandler{TIdentifier,TEntity,TOverrides}.GetDetailsViewResultAsync"/> method of the related action handler.
+        /// </value>
+        public Func<TIdentifier, TEntity, TDetailsModel, Task<IActionResult>> GetDetailsViewResult { get; set; }
     }
 }

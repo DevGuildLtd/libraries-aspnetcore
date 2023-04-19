@@ -51,7 +51,7 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
             await this.PermissionsValidator.DemandCanDeleteAsync(entity);
 
             var model = await this.ConvertToDeleteModelAsync(entity);
-            return this.View(model);
+            return await this.GetDeleteViewResultAsync(id, entity, model);
         }
 
         /// <summary>
@@ -158,20 +158,34 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
         }
 
         /// <summary>
+        /// Asynchronously gets the action result that is used to display the form for the Delete action.
+        /// </summary>
+        /// <param name="id">The identifier of the entity.</param>
+        /// <param name="entity">The deleted entity.</param>
+        /// <param name="model">The delete view model.</param>
+        /// <returns>A task that represents the operation and contains action result as a result.</returns>
+        /// <remarks>By default this method creates the ViewResult with the specified model.</remarks>
+        protected virtual Task<IActionResult> GetDeleteViewResultAsync(TIdentifier id, TEntity entity, TDeleteModel model)
+        {
+            IActionResult result = this.View(model);
+            return Task.FromResult(result);
+        }
+
+        /// <summary>
         /// Asynchronously gets the successful action result for the Delete action.
         /// </summary>
         /// <param name="entity">The deleted entity.</param>
         /// <param name="additionalData">The additional data dictionary that could be used to pass additional data.</param>
         /// <returns>A task that represents the operation and contains action result as a result.</returns>
         /// <remarks>By default this method redirects to Index action.</remarks>
-        protected virtual Task<ActionResult> GetDeleteSuccessResultAsync(TEntity entity, Dictionary<String, Object> additionalData)
+        protected virtual Task<IActionResult> GetDeleteSuccessResultAsync(TEntity entity, Dictionary<String, Object> additionalData)
         {
             if (this.Overrides.GetDeleteSuccessResult != null)
             {
                 return this.Overrides.GetDeleteSuccessResult(entity, additionalData);
             }
 
-            return Task.FromResult<ActionResult>(this.RedirectToAction("Index"));
+            return Task.FromResult<IActionResult>(this.RedirectToAction("Index"));
         }
     }
 }

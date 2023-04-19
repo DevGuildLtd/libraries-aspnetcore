@@ -39,6 +39,6 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.ActionHandlers
         /// <value>
         /// The override implementation of the <see cref="BasicCrudIndexActionHandler{TIdentifier,TEntity,TIndexViewModel,TIndexItemModel}.GetIndexViewResultAsync"/> method of the related action handler.
         /// </value>
-        public Func<TIndexViewModel, Task<ActionResult>> GetIndexViewResult { get; set; }
+        public Func<TIndexViewModel, Task<IActionResult>> GetIndexViewResult { get; set; }
     }
 }

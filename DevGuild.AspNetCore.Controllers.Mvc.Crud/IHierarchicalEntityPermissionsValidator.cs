@@ -9,7 +9,7 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud
     /// Defines interface for hierarchical entity permissions validator.
     /// </summary>
     /// <typeparam name="TEntity">The type of the entity.</typeparam>
-    /// <seealso cref="DevGuild.AspNet.Controllers.Mvc.Crud.IEntityPermissionsValidator{TEntity}" />
+    /// <seealso cref="IEntityPermissionsValidator{TEntity}" />
     public interface IHierarchicalEntityPermissionsValidator<TEntity> : IEntityPermissionsValidator<TEntity>
     {
         /// <summary>

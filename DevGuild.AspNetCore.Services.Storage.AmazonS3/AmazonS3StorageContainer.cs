@@ -18,6 +18,7 @@ namespace DevGuild.AspNetCore.Services.Storage.AmazonS3
         private readonly String key;
         private readonly AmazonS3Client amazonS3Client;
         private readonly String baseUrl;
+        private readonly Boolean publicRead;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AmazonS3StorageContainer"/> class.
@@ -26,10 +27,12 @@ namespace DevGuild.AspNetCore.Services.Storage.AmazonS3
         /// <param name="region">The region.</param>
         /// <param name="bucketName">Name of the bucket.</param>
         /// <param name="key">The key.</param>
-        public AmazonS3StorageContainer(AWSCredentials credentials, RegionEndpoint region, String bucketName, String key)
+        /// <param name="publicRead">Indicates whether files should be available for public read.</param>
+        public AmazonS3StorageContainer(AWSCredentials credentials, RegionEndpoint region, String bucketName, String key, Boolean publicRead)
         {
             this.bucketName = bucketName;
             this.key = key.EndsWith("/") ? key : String.Concat(key, "/");
+            this.publicRead = publicRead;
 
             this.amazonS3Client = new AmazonS3Client(credentials, region);
             this.baseUrl = $"https://{this.bucketName}.s3.amazonaws.com/";
@@ -175,13 +178,19 @@ namespace DevGuild.AspNetCore.Services.Storage.AmazonS3
 
         private async Task PutS3Object(String fullKey, Stream fileStream)
         {
-            await this.amazonS3Client.PutObjectAsync(new PutObjectRequest
+            var request = new PutObjectRequest
             {
                 BucketName = this.bucketName,
                 Key = fullKey,
-                CannedACL = S3CannedACL.PublicRead,
-                InputStream = fileStream
-            });
+                InputStream = fileStream,
+            };
+
+            if (this.publicRead)
+            {
+                request.CannedACL = S3CannedACL.PublicRead;
+            }
+
+            await this.amazonS3Client.PutObjectAsync(request);
         }
     }
 }

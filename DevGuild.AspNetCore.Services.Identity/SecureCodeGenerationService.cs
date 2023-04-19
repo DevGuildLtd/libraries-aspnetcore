@@ -29,21 +29,19 @@ namespace DevGuild.AspNetCore.Services.Identity
         /// <inheritdoc />
         public String GenerateCustomCode(Int32 size, String characters)
         {
-            using (var rng = new RNGCryptoServiceProvider())
+            using var rng = RandomNumberGenerator.Create();
+            var buffer = new Byte[sizeof(UInt32) * size];
+            rng.GetBytes(buffer);
+
+            var result = new Char[size];
+            for (var i = 0; i < size; i++)
             {
-                var buffer = new Byte[sizeof(UInt32) * size];
-                rng.GetBytes(buffer);
-
-                var result = new Char[size];
-                for (var i = 0; i < size; i++)
-                {
-                    var baseIndex = BitConverter.ToUInt32(buffer, i * sizeof(UInt32));
-                    var index = baseIndex % characters.Length;
-                    result[i] = characters[(Int32)index];
-                }
-
-                return new String(result);
+                var baseIndex = BitConverter.ToUInt32(buffer, i * sizeof(UInt32));
+                var index = baseIndex % characters.Length;
+                result[i] = characters[(Int32)index];
             }
+
+            return new String(result);
         }
     }
 }

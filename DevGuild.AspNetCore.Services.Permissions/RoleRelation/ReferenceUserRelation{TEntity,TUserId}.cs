@@ -10,7 +10,7 @@ namespace DevGuild.AspNetCore.Services.Permissions.RoleRelation
     /// </summary>
     /// <typeparam name="TEntity">The type of the entity.</typeparam>
     /// <typeparam name="TUserId">The type of the user identifier.</typeparam>
-    /// <seealso cref="DevGuild.AspNet.Services.Permissions.RoleRelation.UserRelation{TEntity, TUserId}" />
+    /// <seealso cref="UserRelation{TEntity, TUserId}" />
     public class ReferenceUserRelation<TEntity, TUserId> : UserRelation<TEntity, TUserId>
     {
         private readonly Expression<Func<TEntity, TUserId>> userIdExpression;

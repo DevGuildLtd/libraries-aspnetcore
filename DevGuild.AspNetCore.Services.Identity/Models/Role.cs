@@ -8,7 +8,7 @@ namespace DevGuild.AspNetCore.Services.Identity.Models
     /// <summary>
     /// Represents a Role entity.
     /// </summary>
-    /// <seealso cref="Microsoft.AspNetCore.Identity.IdentityRole{System.Guid}" />
+    /// <seealso cref="IdentityRole{Guid}" />
     public class Role : IdentityRole<Guid>
     {
         /// <summary>

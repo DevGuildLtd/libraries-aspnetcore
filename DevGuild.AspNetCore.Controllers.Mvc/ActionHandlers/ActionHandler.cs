@@ -4,7 +4,6 @@ using System.Text;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Newtonsoft.Json;
 
 namespace DevGuild.AspNetCore.Controllers.Mvc.ActionHandlers
 {
@@ -65,14 +64,12 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.ActionHandlers
         /// <param name="data">The JavaScript object graph to serialize.</param>
         /// <param name="serializerSettings">The JsonSerializerSettings used by a formatter.</param>
         /// <returns>The result object that serializes the specified object to JSON format.</returns>
-        protected JsonResult Json(Object data, JsonSerializerSettings serializerSettings) => this.Controller.Json(data, serializerSettings);
+        protected JsonResult Json(Object data, Object serializerSettings) => this.Controller.Json(data, serializerSettings);
 
         /// <summary>
         /// Creates a <see cref="JsonResult"/> object that serializes the specified object to JSON format using the content type and the JSON request behavior.
         /// </summary>
         /// <param name="data">The JavaScript object graph to serialize.</param>
-        /// <param name="contentType">The content type (MIME type).</param>
-        /// <param name="behavior">The JSON request behavior.</param>
         /// <returns>The result object that serializes the specified object to JSON format.</returns>
         protected JsonResult Json(Object data) => this.Controller.Json(data);
 

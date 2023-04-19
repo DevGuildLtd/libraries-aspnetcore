@@ -1,0 +1,5 @@
+﻿<Project>
+  <ItemGroup>
+    <PackageReference Include="MimeKit" Version="4.0.0" />
+  </ItemGroup>
+</Project>

@@ -48,23 +48,39 @@ namespace DevGuild.AspNetCore.Controllers.Mvc.Crud.Base
         /// </value>
         protected IEntityControllerServices ControllerServices { get; }
 
+        /// <summary>
+        /// Gets the repository service.
+        /// </summary>
+        /// <value>
+        /// The repository service.
+        /// </value>
         protected IRepository Repository => this.ControllerServices.Repository;
 
+        /// <summary>
+        /// Gets the permissions validator.
+        /// </summary>
+        /// <value>
+        /// The permissions validator.
+        /// </value>
         protected IEntityPermissionsValidator<TEntity> PermissionsValidator { get; }
 
         /// <summary>
         /// Handles the GET request for the Index action.
         /// </summary>
         /// <returns>An <see cref="ActionResult"/> that renders Index action page.</returns>
-        public Task<IActionResult> Index() => this.IndexHandler.Index();
+        public virtual Task<IActionResult> Index() => this.IndexHandler.Index();
 
         /// <summary>
         /// Handles the GET request for the Details action.
         /// </summary>
         /// <param name="id">The identifier of the entity.</param>
         /// <returns>An <see cref="ActionResult"/> that renders Details action page.</returns>
-        public Task<IActionResult> Details(TIdentifier id) => this.DetailsHandler.Details(id);
+        public virtual Task<IActionResult> Details(TIdentifier id) => this.DetailsHandler.Details(id);
 
+        /// <summary>
+        /// Creates the dependent entity permissions validator.
+        /// </summary>
+        /// <returns>A created permissions validator.</returns>
         protected virtual IEntityPermissionsValidator<TEntity> GetEntityPermissionsValidator()
         {
             return new DefaultEntityPermissionsValidator<TEntity>(

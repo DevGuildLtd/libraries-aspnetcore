@@ -57,29 +57,26 @@ namespace DevGuild.AspNetCore.Services.Uploads.Files
                 return FileUploadResult.Fail("ForbiddenFileFormat");
             }
 
-            using (var hasher = new SHA512CryptoServiceProvider())
-            {
-                using (var memoryStream = new MemoryStream())
-                {
-                    await fileStream.CopyToAsync(memoryStream);
-                    memoryStream.Position = 0;
-                    var hashBytes = hasher.ComputeHash(memoryStream);
-                    memoryStream.Position = 0;
+            using var hasher = SHA512.Create();
+            using var memoryStream = new MemoryStream();
 
-                    var uploadedFile = new UploadedFile(
-                        originalName: Path.GetFileNameWithoutExtension(fileName),
-                        extension: fileExtension,
-                        size: memoryStream.Length,
-                        hash: Convert.ToBase64String(hashBytes),
-                        configuration: configurationEntry,
-                        customData: new UploadedFileCustomData[0]);
+            await fileStream.CopyToAsync(memoryStream);
+            memoryStream.Position = 0;
+            var hashBytes = await hasher.ComputeHashAsync(memoryStream);
+            memoryStream.Position = 0;
 
-                    var path = uploadedFile.GetContainerPath();
-                    await container.StoreFileAsync(path, memoryStream);
-                    await this.filesStore.InsertAsync(uploadedFile);
-                    return FileUploadResult.Succeed(uploadedFile);
-                }
-            }
+            var uploadedFile = new UploadedFile(
+                originalName: Path.GetFileNameWithoutExtension(fileName),
+                extension: fileExtension,
+                size: memoryStream.Length,
+                hash: Convert.ToBase64String(hashBytes),
+                configuration: configurationEntry,
+                customData: Array.Empty<UploadedFileCustomData>());
+
+            var path = uploadedFile.GetContainerPath();
+            await container.StoreFileAsync(path, memoryStream);
+            await this.filesStore.InsertAsync(uploadedFile);
+            return FileUploadResult.Succeed(uploadedFile);
         }
     }
 }

@@ -1,20 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="../MSBuild/Nuget.props" />
   <Import Project="../MSBuild/Build.props" />
+  <Import Project="../MSBuild/References/Microsoft.Extensions.DependencyInjection.Abstractions.props" />
+  <Import Project="../MSBuild/References/Microsoft.Extensions.Options.ConfigurationExtensions.props" />
+  <Import Project="../MSBuild/References/MimeKit.props" />
+  <Import Project="../MSBuild/References/AWSSDK.SimpleEmail.props" />
 
   <PropertyGroup>
     <Description>Contains implementation of email sending service using Amazon SES.</Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.SimpleEmail" Version="3.3.100.4" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.2.0" />
-    <PackageReference Include="MimeKit" Version="2.1.3" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\DevGuild.AspNetCore.Services.Mail\DevGuild.AspNetCore.Services.Mail.csproj" />
   </ItemGroup>
-
 </Project>
